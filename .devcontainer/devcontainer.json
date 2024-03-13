@@ -14,7 +14,6 @@
 		"vscode": {
 			"settings": {},
 			"extensions": [
-				"streetsidesoftware.code-spell-checker",
 				"ms-python.black-formatter",
 				"blinkshellinc.blink-fs",
 				"naumovs.color-highlight",
@@ -52,8 +51,11 @@
 	// },
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install -r requirements.txt"
-
+	"postCreateCommand": [
+		"pip install poetry",
+		"poetry install",
+		"poetry shell"
+	]
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
