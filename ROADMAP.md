@@ -78,25 +78,9 @@
 * [ ] 2019 [KGCN: Knowledge Graph Convolutional Networks for Recommender Systems](https://arxiv.org/pdf/1904.12575)
 * [ ] 2019 [KGAT: KGAT: Knowledge Graph Attention Network for Recommendation](https://arxiv.org/pdf/1905.07854)
 * [ ] 2019 [KNI: An End-to-End Neighborhood-based Interaction Model for Knowledge-enhanced Recommendation](https://arxiv.org/pdf/1908.04032)
+* [ ] 2023 [(RKGCN: Ripple Knowledge Graph Convolutional Networks For Recommendation Systems](https://link.springer.com/content/pdf/10.1007/s11633-023-1440-x.pdf)
 
 ## Model Replication
-
-### Heterogeneous Graph Representation Learning
-
-* [ ] [GCN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/gcn)
-* [ ] [R-GCN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/rgcn)
-* [ ] [GAT](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/gat)
-* [ ] [HetGNN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/hetgnn)
-* [ ] [HAN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/han)
-* [ ] [MAGNN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/magnn)
-* [ ] [HGT](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/hgt)
-* [ ] [metapath2vec](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/metapath2vec)
-* [ ] [SIGN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/sign)
-* [ ] [HGConv](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/hgconv)
-* [ ] [SuperGAT](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/supergat)
-* [ ] [R-HGNN](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/rhgnn)
-* [ ] [C&S](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/cs)
-* [ ] [HeCo](https://github.com/ZZy979/pytorch-tutorial/tree/master/gnn/heco)
 
 ### Recommendation Algorithms Based on Graph Neural Networks
 
@@ -104,6 +88,7 @@
 * [ ] RippleNet
 * [ ] KGCN
 * [ ] KGAT
+* [ ] RKGCN
 
 ## Detailed Plan
 
@@ -117,3 +102,4 @@
 	* [ ] Crawl data for validation set
 	* [ ] Filter data for computer science topic only
 	* [ ] Explore preprocessing techniques
+	* [ ] Learning [DGL](https://www.dgl.ai/) (Deep Graph Library)
