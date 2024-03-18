@@ -9,35 +9,21 @@
 
 ## Paper Reading
 
-### Heterogeneous Graph Representation Learning
+### Graph Neural Networks and Graph Representation Learning
+
+#### Books & Tutorials
+
+* [ ] [Graph Representation Learning](https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book.pdf)
+* [ ] [Deep Graph Learning: Foundations, Advances and Applications](https://ai.tencent.com/ailab/ml/KDD-Deep-Graph-Learning.html)
 
 #### Surveys
 
-* [ ] 2020 [Heterogeneous Network Representation Learning: A Unified Framework with Survey and Benchmark](https://arxiv.org/pdf/2004.00216)
-* [ ] 2020 [A Survey on Heterogeneous Graph Embedding: Methods, Techniques, Applications and Sources](https://arxiv.org/pdf/2011.14867)
+* [ ] 2018 [A Comprehensive Survey of Graph Embedding: Problems, Techniques and Applications](https://ieeexplore.ieee.org/document/8294302)
+* [ ] 2019 [A Comprehensive Survey on Graph Neural Networks](https://ieeexplore.ieee.org/document/9046288)
+* [ ] 2019 [Graph Neural Networks: A Review of Methods and Applications](https://arxiv.org/pdf/1812.08434.pdf)
+* [ ] 2017 [Representation Learning on Graphs: Methods and Applications](https://arxiv.org/pdf/1709.05584.pdf)
 
-#### Graph Neural Networks
-
-* [ ] 2014 [DeepWalk: Online Learning of Social Representations](https://arxiv.org/pdf/1403.6652)
-* [ ] 2016 [node2vec: Scalable Feature Learning for Networks](https://arxiv.org/pdf/1607.00653)
-* [ ] 2017 [metapath2vec: Scalable Representation Learning for Heterogeneous Networks](https://ericdongyx.github.io/papers/KDD17-dong-chawla-swami-metapath2vec.pdf)
-* [ ] 2017 [GCN: SEMI-SUPERVISED CLASSIFICATION WITH GRAPH CONVOLUTIONAL NETWORKS](https://arxiv.org/pdf/1609.02907)
-* [ ] 2018 [R-GCN: Modeling Relational Data with Graph Convolutional Networks](https://arxiv.org/pdf/1703.06103)
-* [ ] 2018 [GAT: GRAPH ATTENTION NETWORKS](https://arxiv.org/pdf/1710.10903)
-* [ ] 2019 [HetGNN: Heterogeneous Graph Neural Network](https://dl.acm.org/doi/pdf/10.1145/3292500.3330961)
-* [ ] 2019 [HAN: Heterogeneous Graph Attention Network](https://arxiv.org/pdf/1903.07293)
-* [ ] 2020 [MAGNN: Metapath Aggregated Graph Neural Network for Heterogeneous Graph Embedding](https://arxiv.org/pdf/2002.01680)
-* [ ] 2020 [HGT: Heterogeneous Graph Transformer](https://arxiv.org/pdf/2003.01332)
-* [ ] 2020 [HGConv: Hybrid Micro/Macro Level Convolution for Heterogeneous Graph Learning](https://arxiv.org/pdf/2012.14722)
-* [ ] 2020 [GPT-GNN: Generative Pre-Training of Graph Neural Networks](https://arxiv.org/pdf/2006.15437)
-* [ ] 2020 [GraphSAINT: GRAPH SAMPLING BASED INDUCTIVE LEARNING METHOD](https://openreview.net/pdf?id=BJe8pkHFwS)
-* [ ] 2020 [SIGN: Scalable Inception Graph Neural Networks](https://arxiv.org/pdf/2004.11198)
-* [ ] 2020 [NARS: SCALABLE GRAPH NEURAL NETWORKS FOR HETEROGENEOUS GRAPHS](https://arxiv.org/pdf/2011.09679)
-* [ ] 2021 [SuperGAT: HOW TO FIND YOUR FRIENDLY NEIGHBORHOOD: GRAPH ATTENTION DESIGN WITH SELF-SUPERVISION](https://openreview.net/pdf?id=Wi5KUNlqWty)
-* [ ] 2021 [R-HGNN: Heterogeneous Graph Representation Learning with Relation Awareness](https://arxiv.org/pdf/2105.11122)
-
-
-#### Self-Supervised/Pre-Training
+### Recommendation Algorithms Based on Graph Neural Networks
 
 * [ ] 2020 [Self-Supervised Graph Representation Learning via Global Context Prediction](https://arxiv.org/pdf/2003.01604)
 * [ ] 2020 [When Does Self-Supervision Help Graph Convolutional Networks?](http://proceedings.mlr.press/v119/you20a/you20a.pdf)
