@@ -23,19 +23,16 @@
 * [ ] 2019 [Graph Neural Networks: A Review of Methods and Applications](https://arxiv.org/pdf/1812.08434.pdf)
 * [ ] 2017 [Representation Learning on Graphs: Methods and Applications](https://arxiv.org/pdf/1709.05584.pdf)
 
-### Recommendation Algorithms Based on Graph Neural Networks
+### Frameworks/Tools
 
-* [ ] 2020 [Self-Supervised Graph Representation Learning via Global Context Prediction](https://arxiv.org/pdf/2003.01604)
-* [ ] 2020 [When Does Self-Supervision Help Graph Convolutional Networks?](http://proceedings.mlr.press/v119/you20a/you20a.pdf)
-* [ ] 2020 [Strategies for Pre-Training Graph Neural Networks](https://www.openreview.net/pdf?id=HJlWWJSFDH)
-* [ ] 2021 [Self-Supervised Learning of Contextual Embeddings for Link Prediction in Heterogeneous Networks](https://arxiv.org/pdf/2007.11192)
-* [ ] 2021 [HeCo: Self-supervised Heterogeneous Graph Neural Network with Co-contrastive Learning](https://arxiv.org/pdf/2105.09111)
+* [ ] [DGL: Deep Graph Library](https://github.com/dmlc/dgl)
 
 #### Others
 
 * [ ] 2021 [C&S: Combining Label Propagation and Simple Models Out-Performs Graph Neural Networks](https://arxiv.org/pdf/2010.13993)
 
 ### Recommendation Algorithms Based on Graph Neural Networks
+
 #### Overview
 
 * [ ] 2020 [A Survey on Knowledge Graph-Based Recommender Systems](https://arxiv.org/pdf/2003.00911)
