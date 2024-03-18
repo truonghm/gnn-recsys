@@ -63,6 +63,11 @@
 * [ ] 2019 [KNI: An End-to-End Neighborhood-based Interaction Model for Knowledge-enhanced Recommendation](https://arxiv.org/pdf/1908.04032)
 * [ ] 2023 [(RKGCN: Ripple Knowledge Graph Convolutional Networks For Recommendation Systems](https://link.springer.com/content/pdf/10.1007/s11633-023-1440-x.pdf)
 
+## Dataset
+
+* [ ] [DBLP](https://dblp.uni-trier.de/)
+* [ ] [Microsoft OAG](https://www.microsoft.com/en-us/research/project/open-academic-graph/)
+
 ## Model Replication
 
 ### Recommendation Algorithms Based on Graph Neural Networks
