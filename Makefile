@@ -1,5 +1,3 @@
-include .env
-
 bootstrap: env req-sync
 
 dev-container: uv env req-install
