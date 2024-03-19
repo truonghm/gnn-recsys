@@ -1,9 +1,13 @@
 bootstrap: env req-sync
 
-dev-container: uv env req-install
+dev-container: uv venv req-install
 
 env:
 	./conda_bootstrap.sh --location=current --name=gnn-recsys --version=3.10
+
+venv:
+	uv venv
+	source .venv/bin/activate
 
 uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -15,8 +19,10 @@ req-compile:
 req-install:
 	uv pip install -r requirements.txt
 
-req-sync: req-compile
+req-sync:
 	uv pip sync requirements.txt
+
+req-cs: req-compile req-sync
 
 clean:
 	py3clean .
