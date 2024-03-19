@@ -2,6 +2,8 @@ include .env
 
 bootstrap: env req-sync
 
+dev-container: uv req-install
+
 env:
 	./conda_bootstrap.sh --location=current --name=gnn-recsys --version=3.10
 
@@ -17,3 +19,16 @@ req-install:
 
 req-sync: req-compile
 	uv pip sync requirements.txt
+
+clean:
+	py3clean .
+	rm -rf .ruff_cache
+	rm -rf .ipynb_checkpoints
+	rm -rf **/.ipynb_checkpoints
+	rm -rf .pytest_cache
+	rm -rf **/.pytest_cache
+	rm -rf __pycache__
+	rm -rf **/__pycache__
+	rm -rf build
+	rm -rf dist
+	rm -rf catboost_info
