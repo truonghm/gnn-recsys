@@ -1,28 +1,38 @@
+SHELL := /bin/bash
+
 bootstrap: env req-sync
 
-dev-container: uv venv req-install
-
-env:
+conda:
 	./conda_bootstrap.sh --location=current --name=gnn-recsys --version=3.10
 
 venv:
-	uv venv
+	test -d venv || uv venv
+
+avenv: venv
 	source .venv/bin/activate
 
 uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 req-compile:
-	uv pip compile pyproject.toml -o requirements.txt
-	if grep -q "torch" requirements.txt; then sed -i '/torch/i -f https://download.pytorch.org/whl/torch_stable.html' requirements.txt; fi
+	uv pip compile requirements.in -o requirements.txt
+	uv pip compile requirements-cuda.in -o requirements-cuda.txt
 
 req-install:
 	uv pip install -r requirements.txt
 
+req-install-cuda:
+	uv pip install -r requirements-cuda.txt
+
 req-sync:
 	uv pip sync requirements.txt
 
+req-sync-cuda:
+	uv pip sync requirements-cuda.txt
+
 req-cs: req-compile req-sync
+
+req-csc: req-compile req-sync-cuda
 
 clean:
 	py3clean .

@@ -7,13 +7,3 @@ name = "gnn-recsys"
 version = "0.0.1"
 readme = "README.md"
 requires-python = ">=3.10, <3.11"
-dependencies = [
-  "numpy==1.26.0",
-  "pandas==2.2.1",
-  "scikit-learn==1.4.1.post1",
-  "matplotlib==3.8.3",
-  "networkx==3.2.1",
-  "seaborn==0.13.2",
-  "ipykernel==6.29.3",
-  "torch==2.2.0"
-]
