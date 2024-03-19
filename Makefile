@@ -1,15 +1,19 @@
+include .env
+
+bootstrap: env req-sync
+
 env:
-	./conda_bootstrap.sh
+	./conda_bootstrap.sh --location=current --name=gnn-recsys --version=3.10
 
-add-torch:
-	poetry source add -p explicit pytorch https://download.pytorch.org/whl/cu117
-	poetry add --source pytorch torch
+uv:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
 
-add-torch-cpu:
-	poetry source add -p explicit pytorch-cpu https://download.pytorch.org/whl/cpu
-	poetry add --source pytorch torch
+req-compile:
+	uv pip compile pyproject.toml -o requirements.txt
+	if grep -q "torch" requirements.txt; then sed -i '/torch/i -f https://download.pytorch.org/whl/torch_stable.html' requirements.txt; fi
 
-poetry:
-	pip install poetry
-	poetry install
-	poetry shell
+req-install:
+	uv pip install -r requirements.txt
+
+req-sync: req-compile
+	uv pip sync requirements.txt

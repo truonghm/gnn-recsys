@@ -3,7 +3,7 @@
 set -e
 
 PROJECT_ENV_LOC="conda"
-ENV_NAME="notebooks"
+ENV_NAME="gnn-recsys"
 PYTHON_VERSION="3.10"
 INSTALL_CONDA=false
 CONDA_HOME_PATH="${HOME}/miniconda3"
