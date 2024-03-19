@@ -2,7 +2,7 @@ include .env
 
 bootstrap: env req-sync
 
-dev-container: uv req-install
+dev-container: uv env req-install
 
 env:
 	./conda_bootstrap.sh --location=current --name=gnn-recsys --version=3.10
