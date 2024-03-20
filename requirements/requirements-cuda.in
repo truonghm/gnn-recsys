@@ -1,0 +1,4 @@
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==2.2.0
+-f https://data.dgl.ai/wheels/cu118/repo.html
+dgl==2.1.0

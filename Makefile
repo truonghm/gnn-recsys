@@ -15,8 +15,8 @@ uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 req-compile:
-	uv pip compile requirements.in -o requirements.txt
-	uv pip compile requirements-cuda.in -o requirements-cuda.txt
+	uv pip compile requirements/requirements-base.in requirements/requirements-cpu.in -o requirements.txt
+	uv pip compile requirements/requirements-base.in requirements/requirements-cuda.in -o requirements-cuda.txt
 
 req-install:
 	uv pip install -r requirements.txt
