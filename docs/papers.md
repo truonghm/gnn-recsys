@@ -1,11 +1,4 @@
-# Project Roadmap
-
-## Overall Plan
-
-* [ ] 2024/03: Collect resoureces (papers, datasets) and study foundational materials
-* [ ] 2024/03: Explore and visualize datasets, crawl data, filter data for computer science topic only
-* [ ] 2024/04: Start reading related papers and define clearly the structure of the project (preprocessing, training, evaluation, etc)
-* [ ] 2024/04: Start implementing existing GNN models and recommendation algorithms
+# Papers and Datasets
 
 ## Paper Reading
 
@@ -77,17 +70,3 @@
 * [ ] KGCN
 * [ ] KGAT
 * [ ] RKGCN
-
-## Detailed Plan
-
-* [ ] 2024/03/10 - 2024/03/17
-	* [ ] Collect datasets (DBLP, Microsoft OAG)
-	* [ ] Study the structure of the datasets
-	* [ ] Read the survey articles
-
-* [ ] 2024/03/18 - 2024/03/24
-	* [ ] Explore and visualize datasets
-	* [ ] Crawl data for validation set
-	* [ ] Filter data for computer science topic only
-	* [ ] Explore preprocessing techniques
-	* [ ] Learning [DGL](https://www.dgl.ai/) (Deep Graph Library)
