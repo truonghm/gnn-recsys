@@ -51,8 +51,8 @@ def analyze(args):
     print("Data type:", args.type)
     print("Total:", total)
     print("Max field set:", max_fields)
-    print("Min field set", min_fields)
-    print("Field occurrence ratio:", {k: v / total for k, v in field_count.items()})
+    print("Min field set:", min_fields)
+    print("Field occurrence %:", {k: "{0:.2f}".format((v / total) * 100) for k, v in field_count.items()})
     print("Example:", sample)
 
 

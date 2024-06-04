@@ -11,6 +11,7 @@
 
 #### Surveys
 
+* [X] 2022 [Scientific Paper Recommendation Systems: a Literature Review of recent Publications](https://arxiv.org/abs/2201.00682)
 * [ ] 2018 [A Comprehensive Survey of Graph Embedding: Problems, Techniques and Applications](https://ieeexplore.ieee.org/document/8294302)
 * [ ] 2019 [A Comprehensive Survey on Graph Neural Networks](https://ieeexplore.ieee.org/document/9046288)
 * [ ] 2019 [Graph Neural Networks: A Review of Methods and Applications](https://arxiv.org/pdf/1812.08434.pdf)
