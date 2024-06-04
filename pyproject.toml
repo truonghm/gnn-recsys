@@ -7,3 +7,40 @@ name = "gnn-recsys"
 version = "0.0.1"
 readme = "README.md"
 requires-python = ">=3.10, <3.11"
+dependencies = [
+    "pandas",
+    "pyarrow>=14.0.1",
+    "numpy",
+    "scikit-learn",
+    "pydantic",
+    "polars",
+    "duckdb",
+	"matplotlib",
+	"networkx",
+	"seaborn",
+	"pyyaml"
+]
+
+[project.optional-dependencies]
+
+dev = [
+  "pre-commit",
+  "ipykernel",
+  "ipywidgets"
+]
+
+[tool.ruff]
+lint.ignore = ["E402","F841"]
+lint.select = ["E", "F", "I", "W"]
+line-length = 120
+lint.fixable = ["I", "F401"]
+include = ["*.py"]
+exclude = [".env", ".venv", "venv", "notebooks"]
+output-format = "full"
+src = ["forecaster"]
+
+[tool.ruff.format]
+docstring-code-format = true
+quote-style = "double"
+skip-magic-trailing-comma = false
+line-ending = "auto"
