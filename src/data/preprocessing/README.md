@@ -186,3 +186,45 @@ In order to prepare the dataset for the recommendation system, we need to extrac
 ```bash
 python -m src.data.preprocessing.extract_cs /media/truonghm/WD-Linux-1TB/OAG21_Dataset
 ```
+
+The output includes 5 files:
+
+- Authors: `mag_authors.txt`
+
+	```json
+	{"id": aid, "name": "author name", "org": oid}
+	```
+
+- Papers: `mag_papers.txt`
+
+	```json
+	{
+	"id": pid,
+	"title": "paper title",
+	"authors": [aid],
+	"venue": vid,
+	"year": year,
+	"abstract": "abstract",
+	"fos": ["field"],
+	"references": [pid],
+	"n_citation": n_citation
+	}
+	```
+
+- Venues: `mag_venues.txt`
+
+	```json
+	{"id": vid, "name": "venue name"}
+	```
+
+- Institutions: `mag_institutions.txt`
+
+	```json
+	{"id": oid, "name": "org name"}
+	```
+
+- Fields: `mag_fields.txt`
+
+	```json
+	{"id": fid, "name": "field name"}
+	```

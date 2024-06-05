@@ -78,48 +78,77 @@ def extract(args):
     print("Extracting papers...")
     paper_ids, author_ids, venue_ids, fields = set(), set(), set(), set()
     output_path = settings.DATA_DIR / "cs"
-    with open(output_path / "mag_papers.txt", "w", encoding="utf8") as f:
-        for p in extract_papers(args.raw_path):
-            paper_ids.add(p["id"])
-            author_ids.update(p["authors"])
-            venue_ids.add(p["venue"])
-            fields.update(p["fos"])
-            json.dump(p, f, ensure_ascii=False)
-            f.write("\n")
-    print(f"Paper extraction completed, saved to {f.name}")
+    # check if mag_papers.txt already exists
+    if (output_path / "mag_papers.txt").exists():
+        print(f"File {output_path / 'mag_papers.txt'} already exists")
+        # use the existing file to get the paper_ids, author_ids, venue_ids, and fields
+        with open(output_path / "mag_papers.txt", "r", encoding="utf8") as f:
+            for line in f:
+                p = json.loads(line)
+                paper_ids.add(p["id"])
+                author_ids.update(p["authors"])
+                venue_ids.add(p["venue"])
+                fields.update(p["fos"])
+    else:
+        with open(output_path / "mag_papers.txt", "w", encoding="utf8") as f:
+            for p in extract_papers(args.raw_path):
+                paper_ids.add(p["id"])
+                author_ids.update(p["authors"])
+                venue_ids.add(p["venue"])
+                fields.update(p["fos"])
+                json.dump(p, f, ensure_ascii=False)
+                f.write("\n")
+        print(f"Paper extraction completed, saved to {f.name}")
     print(
-        f"Number of papers {len(paper_ids)}, \
-            number of scholars {len(author_ids)}, \
-            number of journals {len(venue_ids)}, \
-            number of fields {len(fields)}"
+        f"Number of papers {len(paper_ids)},\n" \
+            + f"number of scholars {len(author_ids)},\n" \
+            + f"number of journals {len(venue_ids)},\n" \
+            + f"number of fields {len(fields)}"
     )
 
     print("Extracting scholars...")
     institution_ids = set()
-    with open(output_path / "mag_authors.txt", "w", encoding="utf8") as f:
-        for a in extract_authors(args.raw_path, author_ids):
-            if a["org"]:
-                institution_ids.add(a["org"])
-            json.dump(a, f, ensure_ascii=False)
-            f.write("\n")
-    print(f"Scholar extraction completed, saved to {f.name}")
+    if (output_path / "mag_authors.txt").exists():
+        print(f"File {output_path / 'mag_authors.txt'} already exists")
+        # use the existing file to get the institution_ids
+        with open(output_path / "mag_authors.txt", "r", encoding="utf8") as f:
+            for line in f:
+                a = json.loads(line)
+                if a["org"]:
+                    institution_ids.add(a["org"])
+    else:
+        with open(output_path / "mag_authors.txt", "w", encoding="utf8") as f:
+            for a in extract_authors(args.raw_path, author_ids):
+                if a["org"]:
+                    institution_ids.add(a["org"])
+                json.dump(a, f, ensure_ascii=False)
+                f.write("\n")
+        print(f"Scholar extraction completed, saved to {f.name}")
     print(f"Number of institutions {len(institution_ids)}")
 
     print("Extracting journals...")
-    with open(output_path / "mag_venues.txt", "w", encoding="utf8") as f:
-        for v in extract_venues(args.raw_path, venue_ids):
-            json.dump(v, f, ensure_ascii=False)
-            f.write("\n")
-    print(f"Journal extraction completed, saved to {f.name}")
+    if (output_path / "mag_venues.txt").exists():
+        print(f"File {output_path / 'mag_venues.txt'} already exists, skipping")
+    else:
+        with open(output_path / "mag_venues.txt", "w", encoding="utf8") as f:
+            for v in extract_venues(args.raw_path, venue_ids):
+                json.dump(v, f, ensure_ascii=False)
+                f.write("\n")
+        print(f"Journal extraction completed, saved to {f.name}")
 
     print("Extracting institutions...")
-    with open(output_path / "mag_institutions.txt", "w", encoding="utf8") as f:
-        for i in extract_institutions(args.raw_path, institution_ids):
-            json.dump(i, f, ensure_ascii=False)
-            f.write("\n")
-    print(f"Institution extraction completed, saved to {f.name}")
+    if (output_path / "mag_institutions.txt").exists():
+        print(f"File {output_path / 'mag_institutions.txt'} already exists, skipping")
+        with open(output_path / "mag_institutions.txt", "w", encoding="utf8") as f:
+            for i in extract_institutions(args.raw_path, institution_ids):
+                json.dump(i, f, ensure_ascii=False)
+                f.write("\n")
+        print(f"Institution extraction completed, saved to {f.name}")
 
     print("Extracting fields...")
+    if (output_path / "mag_fields.txt").exists():
+        print(f"File {output_path / 'mag_fields.txt'} already exists, skipping")
+        return
     fields.remove(COMPUTER_SCIENCE_TAG)
     fields = sorted(fields)
     with open(output_path / "mag_fields.txt", "w", encoding="utf8") as f:
