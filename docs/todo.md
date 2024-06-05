@@ -16,7 +16,7 @@
 	* [X] Read the survey articles: [Scientific Paper Recommendation Systems: a Literature Review of recent Publications](https://arxiv.org/abs/2201.00682)
 
 * [ ] 2024/05/27 - 2024/06/09
-	* [ ] Filter validation data (RAND) to only contain relevant articles and map them to the original dataset (will need to use the implicit item-item rating matrix based on click logs to generate ground truth) 
+	* [ ] Filter validation data ([RARD II](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/AT4MNE)) to only contain relevant articles and map them to the original dataset (will need to use the implicit item-item rating matrix based on click logs to generate ground truth) 
 	* [ ] Review and test several baseline methods such as TF-IDF
 	* [ ] Learning [DGL](https://www.dgl.ai/) (Deep Graph Library)
 	* [X] Read the survey articles
