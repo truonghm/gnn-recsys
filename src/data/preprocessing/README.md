@@ -6,12 +6,12 @@ The [Microsoft Academic Graph (MAG)](https://academic.microsoft.com/) is downloa
 
 Below is the statistics of the MAG dataset, which totals to about 182 GB:
 
-| Type        | File                  | Size  | Number of nodes |
-| ----------- | --------------------- | ----- | --------------- |
-| author      | mag_authors_{0-1}.zip | 11GB  | 243477150       |
-| paper       | mag_papers_{0-16}.zip | 171GB | 240255240       |
-| venue       | mag_venues.zip        | 1.8MB | 53422           |
-| affiliation | mag_affiliations.zip  | 1.4MB |                 |
+| Type        | File                  | Size   | Number of nodes |
+| ----------- | --------------------- | ------ | --------------- |
+| author      | mag_authors_{0-1}.zip | 11 GB  | 243,477,150     |
+| paper       | mag_papers_{0-16}.zip | 171 GB | 240,255,240     |
+| venue       | mag_venues.zip        | 1.8 MB | 53,422          |
+| affiliation | mag_affiliations.zip  | 1.4 MB | 25,776          |
 
 
 ### Authors
@@ -154,15 +154,15 @@ Results:
 - Total number of nodes: 25,776
 - Data schema:
 
-| Field         | Occurrence % |
-| ------------- | ------------ |
-| id            | 100.00       |
-| DisplayName   | 100.00       |
+| Field          | Occurrence % |
+| -------------- | ------------ |
+| id             | 100.00       |
+| DisplayName    | 100.00       |
 | NormalizedName | 100.00       |
-| WikiPage      | 98.88        |
-| Latitude      | 100.00       |
-| Longitude     | 100.00       |
-| url           | 66.50        |
+| WikiPage       | 98.88        |
+| Latitude       | 100.00       |
+| Longitude      | 100.00       |
+| url            | 66.50        |
 
 Example: 
 
@@ -181,7 +181,7 @@ Example:
 
 ## Computer Science Subset Extraction
 
-In order to prepare the dataset for the recommendation system, we need to extract a subset of the original dataset that is relevant to the computer science field. To do this, we filter the papers in computer science in the last 10 years and manually build a list of relevant keywords in computer science to filter the papers using the `fos` key in the paper nodes. Papers with empty main fields (title, authors, fos, venue, year) are removed.
+In order to prepare the dataset for the recommendation system, we need to extract a subset of the original dataset that is relevant to the computer science field. To do this, we filter the papers in computer science in the last 10 years and manually build a list of relevant keywords in computer science to filter the papers using the `fos` key in the paper nodes. Papers with empty main fields (title, authors, fos, venue, year) are removed. After the filtering, there are 1,865,086 papers left.
 
 ```bash
 python -m src.data.preprocessing.extract_cs /media/truonghm/WD-Linux-1TB/OAG21_Dataset

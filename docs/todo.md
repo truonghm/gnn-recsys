@@ -24,3 +24,6 @@
 	* [X] Read the survey articles
 	* [ ] Break down prediction task: (1) paper recall and (2) paper ranking. Paper recall can be done using a simple model like TF-IDF or [SciBERT](https://arxiv.org/abs/1903.10676) to compute cosine similarity.
 	* [ ] Review related literature and methods for paper recall.
+	* [ ] Clustering
+	* [X] Summarize the lit review [Scientific Paper Recommendation Systems: a Literature Review of recent Publications](https://arxiv.org/abs/2201.00682), focusing on GNN (is label needed?)
+	* [ ] test some graph algos such as meta-path, random walk, modularity.
