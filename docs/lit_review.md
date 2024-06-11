@@ -1,6 +1,6 @@
 # Literature review
 
-This review is a summary of the article [Scientific Paper Recommendation Systems: a Literature Review of recent Publications](https://arxiv.org/pdf/2201.00682). The article discusses many different papers focusing on scientific paper recommendation systems, but this summary will only focus on papers that utilize graph structure, which total to 33 papers published between (inclusive) 2019 and 2021. The summary will also emphasize papers that discuss non-personalized recommendation systems, i.e. systems that do not use user profiles to make recommendations.
+This review is a summary of the article [Scientific Paper Recommendation Systems: a Literature Review of recent Publications](https://arxiv.org/pdf/2201.00682). The article discusses many different papers focusing on scientific paper recommendation systems, but this summary will only focus on papers that utilize graph structure, which total to 25 papers published between (inclusive) 2019 and 2021. The summary will also emphasize papers that discuss non-personalized recommendation systems, i.e. systems that do not use user profiles to make recommendations.
 
 ## Types of graph structures
 
