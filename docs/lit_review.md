@@ -38,7 +38,7 @@ In general, most of the papers follow a loosely similar structure:
 
 ### Graph Neural Networks & Graph Embeddings
 
-- Graph Neural Network: [L2021](papers/L2021.pdf)
+- Graph Neural Network: [L2021](papers/L2021.pdf), [Tang2021](papers/Tang2021.pdf), [Yu2021](papers/Yu2021.pdf), however the 2 latter papers are for personalized systems.
 - Heterogeneous graph embeddings: [Du2020](papers/Du2020.pdf), [Hua2020](papers/Hua2020.pdf), [Kong2018](papers/Kong2018.pdf)
 
 
