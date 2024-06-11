@@ -146,7 +146,7 @@ The performance of a paper recommendation system can be quantified by measuring 
 
 ## Annex
 
-Below is a list of related methods found in the papers that were not included in the summary above. They are graph-based neural network models, graph representation learning methods, and graph-based recommendation algorithms.
+Below is a list of related methods found in the papers (and some other papers outside of the literature review) that were not included in the summary above. They are graph-based neural network models, graph representation learning methods, and graph-based recommendation algorithms.
 
 ### Graph-based Neural Network and Graph Representation Learning
 
