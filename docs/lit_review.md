@@ -115,6 +115,16 @@ clustered by topic, the most popular ones from the clusters most similar to the 
 
 ## Evaluation
 
+### Supervised Labelling
+
+In terms of supervised labels, ***most papers use datasets with no explicit labels*** (dblp, AMiner, ACM, MAG, CiteSeerX, etc.). There are several that do have labels, such as:
+
+- Supervised labels provided by human annotators in the form of sets of papers, which researchers found relevant for themselves, such as the [SPRD based datasets](https://scholarbank.nus.edu.sg/handle/10635/146027).
+- Interaction data from users, such as clicks, likes, downloads, etc. such as the [Citeulike datasets](https://github.com/js05212/citeulike-a).
+- Other labelled datasets: [PRSDDataset](https://sites.google.com/site/tinhuynhuit/dataset), [RARD II](https://arxiv.org/abs/1807.06918).
+
+### Measurement
+
 The performance of a paper recommendation system can be quantified by measuring how well a target value has been approximated by the recommended publications. Specifically, there are 3 areas of evaluation:
 
 - **Revelency**: Method used to evaluate the relevance of the recommended papers, including:
@@ -132,12 +142,6 @@ The performance of a paper recommendation system can be quantified by measuring 
   - nDCG (Normalized Discounted Cumulative Gain)
   - MRR (Mean Reciprocal Rank)
   - MAP (Mean Average Precision)
-
-In terms of supervised labels, ***most papers use datasets with no explicit labels*** (dblp, AMiner, ACM, MAG, CiteSeerX, etc.). There are several that do have labels, such as:
-
-- Supervised labels provided by human annotators in the form of sets of papers, which researchers found relevant for themselves, such as the [SPRD based datasets](https://scholarbank.nus.edu.sg/handle/10635/146027).
-- Interaction data from users, such as clicks, likes, downloads, etc. such as the [Citeulike datasets](https://github.com/js05212/citeulike-a).
-- Other labelled datasets: [PRSDDataset](https://sites.google.com/site/tinhuynhuit/dataset), [RARD II](https://arxiv.org/abs/1807.06918).
 
 
 ## Annex
