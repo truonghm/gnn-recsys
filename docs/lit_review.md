@@ -2,16 +2,6 @@
 
 This review is a summary of the article [Scientific Paper Recommendation Systems: a Literature Review of recent Publications](https://arxiv.org/pdf/2201.00682). The article discusses many different papers focusing on scientific paper recommendation systems, but this summary will only focus on papers that utilize graph structure, which total to 25 papers published between (inclusive) 2019 and 2021. The summary will also emphasize papers that discuss non-personalized recommendation systems, i.e. systems that do not use user profiles to make recommendations.
 
-## Types of graph structures
-
-- Most papers use some form of heterogenous graph strucuture.
-- Most build a graph using one of or a combination (see [Ali2020](papers/Ali2020.pdf), [Du2020](papers/Du2020.pdf), [Hua2020](papers/Hua2020.pdf), [Li2021](papers/Li2021.pdf), [Zhang2019](papers/Zhang2019.pdf), [Zhang2020](papers/Zhang2020.pdf)) of the following:
-  - Authors ([Hu2020](papers/Hu2020.pdf))
-  - Papers ([L2021](papers/L2021.pdf))
-  - Venues
-  - Labels/Keywords/Topics
-  - Citations (directed or undirected graphs). Some papers use co-citations or bibliographi coupling or both. See [Jing2020](papers/Jing2020.pdf), [Kanakia2019](papers/Kanakia2019.pdf), [Kang2021](papers/Kang2021.pdf), [Sakib2020](papers/Sakib2020.pdf), [Tanner2019](papers/Tanner2019.pdf), [Yang2019](papers/Yang2019.pdf), [Shi2020](papers/Shi2020.pdf), [Waheed2019](papers/Waheed2019.pdf).
-
 ## Methods
 
 ### General methodologies
@@ -23,6 +13,16 @@ In general, most of the papers follow a loosely similar structure:
 2. **Representation Learning**: Next, a variation or combination of embedding representation (SBERT, LDA, TF-IDF, Word2Vec, or Doc2Vec), random walk/meta-path analysis and/or Graph Neural Network is used. The result is the generation of embeddings that capture the structural and semantic information of the graph.
  
 3. **Recommendation and ranking**: Some form of closeness measurement or grouping is used in this step, such as cosine similarity or clustering methods. The papers are ranked by this measurement, while some are ordered in a path. Results can also be adjusted based on the recency of papers (using a time decay factor) or the popularity of authors.
+
+### Types of graph structures
+
+- Most papers use some form of heterogenous graph strucuture.
+- Most build a graph using one of or a combination (see [Ali2020](papers/Ali2020.pdf), [Du2020](papers/Du2020.pdf), [Hua2020](papers/Hua2020.pdf), [Li2021](papers/Li2021.pdf), [Zhang2019](papers/Zhang2019.pdf), [Zhang2020](papers/Zhang2020.pdf)) of the following:
+  - Authors ([Hu2020](papers/Hu2020.pdf))
+  - Papers ([L2021](papers/L2021.pdf))
+  - Venues
+  - Labels/Keywords/Topics
+  - Citations (directed or undirected graphs). Some papers use co-citations or bibliographi coupling or both. See [Jing2020](papers/Jing2020.pdf), [Kanakia2019](papers/Kanakia2019.pdf), [Kang2021](papers/Kang2021.pdf), [Sakib2020](papers/Sakib2020.pdf), [Tanner2019](papers/Tanner2019.pdf), [Yang2019](papers/Yang2019.pdf), [Shi2020](papers/Shi2020.pdf), [Waheed2019](papers/Waheed2019.pdf).
 
 ### Meta-paths
 
