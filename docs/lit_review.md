@@ -11,7 +11,7 @@ In general, most of the papers follow a loosely similar structure:
 1. **Graph Construction**: First, they construct a graph incorporating multiple types of entities (authors, papers, venues, topics) and relationships (citations, co-authorships, topical relevance).
 
 2. **Representation Learning**: Next, a variation or combination of embedding representation (SBERT, LDA, TF-IDF, Word2Vec, or Doc2Vec), random walk/meta-path analysis and/or Graph Neural Network is used. The result is the generation of embeddings that capture the structural and semantic information of the graph.
- 
+
 3. **Recommendation and ranking**: Some form of closeness measurement or grouping is used in this step, such as cosine similarity or clustering methods. The papers are ranked by this measurement, while some are ordered in a path. Results can also be adjusted based on the recency of papers (using a time decay factor) or the popularity of authors.
 
 ### Types of graph structures
@@ -142,6 +142,19 @@ The performance of a paper recommendation system can be quantified by measuring 
   - nDCG (Normalized Discounted Cumulative Gain)
   - MRR (Mean Reciprocal Rank)
   - MAP (Mean Average Precision)
+
+### Baseline methods
+
+Taken from [Hua2020](papers/Hua2020.pdf), the following are some of the baseline methods used in the papers:
+
+- DeepWalk [DeepWalk: Online Learning of Social Representations](https://arxiv.org/pdf/1403.6652)
+- Node2Vec [node2vec: Scalable Feature Learning for Networks](https://arxiv.org/pdf/1607.00653)
+- LDA
+- LSI
+- PathSim
+- HeteSim
+- PageRank
+- PAPR
 
 
 ## Annex
