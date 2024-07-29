@@ -2,15 +2,15 @@ import argparse
 import json
 
 from src.config import settings
-from src.data.preprocessing.analyze import iter_lines
-from src.data.preprocessing.constants import COMPUTER_SCIENCE_L2_TAGS, COMPUTER_SCIENCE_TAG
+from src.data.oag_cs.analyze import iter_lines
+from src.data.oag_cs.constants import COMPUTER_SCIENCE_L2_TAGS, COMPUTER_SCIENCE_TAG
 
 START_YEAR = 2010
 END_YEAR = 2021
 
 
 def extract_papers(raw_path):
-    valid_keys = ["title", "authors", "venue", "year", "indexed_abstract", "fos", "references"]
+    valid_keys = ["title", "authors", "venue", "year", "indexed_abstract", "fos", "doi", "references"]
     cs_fields = set(COMPUTER_SCIENCE_L2_TAGS)
     for p in iter_lines(raw_path, "paper"):
         if not all(p.get(k) for k in valid_keys):
@@ -33,6 +33,7 @@ def extract_papers(raw_path):
                     "year": p["year"],
                     "abstract": abstract,
                     "fos": list(fos),
+                    "doi": p["doi"].lower(),
                     "references": p["references"],
                     "n_citation": p.get("n_citation", 0),
                 }
@@ -78,6 +79,11 @@ def extract(args):
     print("Extracting papers...")
     paper_ids, author_ids, venue_ids, fields = set(), set(), set(), set()
     output_path = settings.DATA_DIR / "cs"
+    # check if output_path dir exists, if not create it
+    if not output_path.exists():
+        print(f"Output dir {output_path} does not exist, creating it...")
+        output_path.mkdir(parents=True)
+
     # check if mag_papers.txt already exists
     if (output_path / "mag_papers.txt").exists():
         print(f"File {output_path / 'mag_papers.txt'} already exists")

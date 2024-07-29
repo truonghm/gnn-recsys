@@ -10,15 +10,18 @@ requires-python = ">=3.10, <3.11"
 dependencies = [
     "pandas",
     "pyarrow>=14.0.1",
+    "polars >= 1.0.0",
     "numpy",
     "scikit-learn",
     "pydantic",
     "polars",
     "duckdb",
-	"matplotlib",
-	"networkx",
-	"seaborn",
-	"pyyaml"
+    "matplotlib",
+    "networkx",
+    "seaborn",
+    "pyyaml",
+    "gensim",
+    "ogb"
 ]
 
 [project.optional-dependencies]

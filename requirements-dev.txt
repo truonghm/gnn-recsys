@@ -23,9 +23,11 @@ debugpy==1.8.1
 decorator==5.1.1
     # via ipython
 dgl==2.1.0
+    # via -r requirements-cpu.in
 distlib==0.3.8
     # via virtualenv
 duckdb==1.0.0
+    # via gnn-recsys (pyproject.toml)
 exceptiongroup==1.2.1
     # via ipython
 executing==2.0.1
@@ -39,16 +41,20 @@ fonttools==4.53.0
     # via matplotlib
 fsspec==2024.6.0
     # via torch
+gensim==4.3.3
+    # via gnn-recsys (pyproject.toml)
 identify==2.5.36
     # via pre-commit
 idna==3.7
     # via requests
 ipykernel==6.29.4
+    # via gnn-recsys (pyproject.toml)
 ipython==8.25.0
     # via
     #   ipykernel
     #   ipywidgets
 ipywidgets==8.1.3
+    # via gnn-recsys (pyproject.toml)
 jedi==0.19.1
     # via ipython
 jinja2==3.1.4
@@ -65,10 +71,14 @@ jupyterlab-widgets==3.0.11
     # via ipywidgets
 kiwisolver==1.4.5
     # via matplotlib
+littleutils==0.2.4
+    # via outdated
 markupsafe==2.1.5
     # via jinja2
 matplotlib==3.9.0
-    # via seaborn
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   seaborn
 matplotlib-inline==0.1.7
     # via
     #   ipykernel
@@ -79,15 +89,19 @@ nest-asyncio==1.6.0
     # via ipykernel
 networkx==3.3
     # via
+    #   gnn-recsys (pyproject.toml)
     #   dgl
     #   torch
 nodeenv==1.9.0
     # via pre-commit
 numpy==1.26.4
     # via
+    #   gnn-recsys (pyproject.toml)
     #   contourpy
     #   dgl
+    #   gensim
     #   matplotlib
+    #   ogb
     #   pandas
     #   pyarrow
     #   scikit-learn
@@ -124,12 +138,19 @@ nvidia-nvjitlink-cu12==12.5.40
     #   nvidia-cusparse-cu12
 nvidia-nvtx-cu12==12.1.105
     # via torch
+ogb==1.3.6
+    # via gnn-recsys (pyproject.toml)
+outdated==0.2.2
+    # via ogb
 packaging==24.0
     # via
     #   ipykernel
     #   matplotlib
 pandas==2.2.2
-    # via seaborn
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   ogb
+    #   seaborn
 parso==0.8.4
     # via jedi
 pexpect==4.9.0
@@ -140,8 +161,10 @@ platformdirs==4.2.2
     # via
     #   jupyter-core
     #   virtualenv
-polars==0.20.31
+polars==1.3.0
+    # via gnn-recsys (pyproject.toml)
 pre-commit==3.7.1
+    # via gnn-recsys (pyproject.toml)
 prompt-toolkit==3.0.46
     # via ipython
 psutil==5.9.8
@@ -153,7 +176,9 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
     # via stack-data
 pyarrow==16.1.0
+    # via gnn-recsys (pyproject.toml)
 pydantic==2.7.3
+    # via gnn-recsys (pyproject.toml)
 pydantic-core==2.18.4
     # via pydantic
 pygments==2.18.0
@@ -168,7 +193,9 @@ python-dateutil==2.9.0.post0
 pytz==2024.1
     # via pandas
 pyyaml==6.0.1
-    # via pre-commit
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   pre-commit
 pyzmq==26.0.3
     # via
     #   ipykernel
@@ -176,17 +203,28 @@ pyzmq==26.0.3
 requests==2.32.3
     # via
     #   dgl
+    #   outdated
     #   torchdata
 scikit-learn==1.5.0
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   ogb
 scipy==1.13.1
     # via
     #   dgl
+    #   gensim
     #   scikit-learn
 seaborn==0.13.2
+    # via gnn-recsys (pyproject.toml)
+setuptools==71.1.0
+    # via outdated
 six==1.16.0
     # via
     #   asttokens
+    #   ogb
     #   python-dateutil
+smart-open==7.0.4
+    # via gensim
 stack-data==0.6.3
     # via ipython
 sympy==1.12.1
@@ -194,7 +232,10 @@ sympy==1.12.1
 threadpoolctl==3.5.0
     # via scikit-learn
 torch==2.2.0
-    # via torchdata
+    # via
+    #   -r requirements-cpu.in
+    #   ogb
+    #   torchdata
 torchdata==0.7.1
     # via dgl
 tornado==6.4
@@ -202,7 +243,9 @@ tornado==6.4
     #   ipykernel
     #   jupyter-client
 tqdm==4.66.4
-    # via dgl
+    # via
+    #   dgl
+    #   ogb
 traitlets==5.14.3
     # via
     #   comm
@@ -224,6 +267,7 @@ tzdata==2024.1
     # via pandas
 urllib3==2.2.1
     # via
+    #   ogb
     #   requests
     #   torchdata
 virtualenv==20.26.2
@@ -232,3 +276,5 @@ wcwidth==0.2.13
     # via prompt-toolkit
 widgetsnbextension==4.0.11
     # via ipywidgets
+wrapt==1.16.0
+    # via smart-open

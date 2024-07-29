@@ -19,7 +19,7 @@ Below is the statistics of the MAG dataset, which totals to about 182 GB:
 Running the following command will analyze the author dataset:
 
 ```bash
-python -m src.data.preprocessing.analyze author /media/truonghm/WD-Linux-1TB/OAG21_Dataset
+python -m src.data.oag_cs.analyze author /media/truonghm/WD-Linux-1TB/OAG21_Dataset
 ```
 
 Results:
@@ -27,15 +27,15 @@ Results:
 - Total number of nodes: 243,477,150
 - Data schema:
 
-| Field             | Occurrence % |
-| ----------------- | ------------ |
-| id                | 100.00       |
-| name              | 100.00       |
-| normalized_name   | 100.00       |
-| pubs              | 100.00       |
-| n_pubs            | 100.00       |
-| n_citation        | 39.56        |
-| last_known_aff_id | 17.81        |
+| Field             | Non-null % |
+| ----------------- | ---------- |
+| id                | 100.00     |
+| name              | 100.00     |
+| normalized_name   | 100.00     |
+| pubs              | 100.00     |
+| n_pubs            | 100.00     |
+| n_citation        | 39.56      |
+| last_known_aff_id | 17.81      |
 
 Example of one record:
 
@@ -56,7 +56,7 @@ Example of one record:
 Running the following command will analyze the paper dataset:
 
 ```bash
-python -m src.data.preprocessing.analyze paper /media/truonghm/WD-Linux-1TB/OAG21_Dataset
+python -m src.data.oag_cs.analyze paper /media/truonghm/WD-Linux-1TB/OAG21_Dataset
 ```
 
 Results:
@@ -64,25 +64,25 @@ Results:
 - Total number of nodes: 240,255,240
 - Data schema:
 
-| Field            | Occurrence % |
-| ---------------- | ------------ |
-| id               | 100.00       |
-| title            | 99.99        |
-| authors          | 99.98        |
-| year             | 99.99        |
-| publisher        | 52.83        |
-| fos              | 87.58        |
-| page_start       | 50.85        |
-| page_end         | 44.68        |
-| volume           | 43.23        |
-| issue            | 41.51        |
-| url              | 94.14        |
-| n_citation       | 37.95        |
-| doc_type         | 62.72        |
-| references       | 32.83        |
-| venue            | 59.78        |
-| doi              | 37.33        |
-| indexed_abstract | 58.32        |
+| Field            | Non-null % |
+| ---------------- | ---------- |
+| id               | 100.00     |
+| title            | 99.99      |
+| authors          | 99.98      |
+| year             | 99.99      |
+| publisher        | 52.83      |
+| fos              | 87.58      |
+| page_start       | 50.85      |
+| page_end         | 44.68      |
+| volume           | 43.23      |
+| issue            | 41.51      |
+| url              | 94.14      |
+| n_citation       | 37.95      |
+| doc_type         | 62.72      |
+| references       | 32.83      |
+| venue            | 59.78      |
+| doi              | 37.33      |
+| indexed_abstract | 58.32      |
 
 Example of one record:
 
@@ -113,7 +113,7 @@ Example of one record:
 Running the following command will analyze the venue dataset:
 
 ```bash
-python -m src.data.preprocessing.analyze venue /media/truonghm/WD-Linux-1TB/OAG21_Dataset
+python -m src.data.oag_cs.analyze venue /media/truonghm/WD-Linux-1TB/OAG21_Dataset
 ```
 
 Results:
@@ -121,13 +121,13 @@ Results:
 - Total number of nodes: 53,422
 - Data schema:
 
-| Field          | Occurrence % |
-| -------------- | ------------ |
-| id             | 100.00       |
-| JournalId      | 91.63        |
-| DisplayName    | 100.00       |
-| NormalizedName | 100.00       |
-| ConferenceId   | 8.37         |
+| Field          | Non-null % |
+| -------------- | ---------- |
+| id             | 100.00     |
+| JournalId      | 91.63      |
+| DisplayName    | 100.00     |
+| NormalizedName | 100.00     |
+| ConferenceId   | 8.37       |
 
 Example: 
 
@@ -146,7 +146,7 @@ Example:
 Running the following command will analyze the affiliation dataset:
 
 ```bash
-python -m src.data.preprocessing.analyze affiliation /media/truonghm/WD-Linux-1TB/OAG21_Dataset
+python -m src.data.oag_cs.analyze affiliation /media/truonghm/WD-Linux-1TB/OAG21_Dataset
 ```
 
 Results:
@@ -154,15 +154,15 @@ Results:
 - Total number of nodes: 25,776
 - Data schema:
 
-| Field          | Occurrence % |
-| -------------- | ------------ |
-| id             | 100.00       |
-| DisplayName    | 100.00       |
-| NormalizedName | 100.00       |
-| WikiPage       | 98.88        |
-| Latitude       | 100.00       |
-| Longitude      | 100.00       |
-| url            | 66.50        |
+| Field          | Non-null % |
+| -------------- | ---------- |
+| id             | 100.00     |
+| DisplayName    | 100.00     |
+| NormalizedName | 100.00     |
+| WikiPage       | 98.88      |
+| Latitude       | 100.00     |
+| Longitude      | 100.00     |
+| url            | 66.50      |
 
 Example: 
 
@@ -184,7 +184,7 @@ Example:
 In order to prepare the dataset for the recommendation system, we need to extract a subset of the original dataset that is relevant to the computer science field. To do this, we filter the papers in computer science in the last 10 years and manually build a list of relevant keywords in computer science to filter the papers using the `fos` key in the paper nodes. Papers with empty main fields (title, authors, fos, venue, year) are removed. After the filtering, there are 1,865,086 papers left.
 
 ```bash
-python -m src.data.preprocessing.extract_cs /media/truonghm/WD-Linux-1TB/OAG21_Dataset
+python -m src.data.oag_cs.extract_cs /media/truonghm/WD-Linux-1TB/OAG21_Dataset
 ```
 
 The output includes 5 files:

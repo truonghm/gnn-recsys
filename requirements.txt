@@ -11,7 +11,9 @@ contourpy==1.2.0
 cycler==0.12.1
     # via matplotlib
 dgl==2.1.0
+    # via -r requirements-cpu.in
 duckdb==1.0.0
+    # via gnn-recsys (pyproject.toml)
 filelock==3.13.1
     # via
     #   torch
@@ -20,6 +22,8 @@ fonttools==4.49.0
     # via matplotlib
 fsspec==2024.2.0
     # via torch
+gensim==4.3.3
+    # via gnn-recsys (pyproject.toml)
 idna==3.6
     # via requests
 jinja2==3.1.3
@@ -28,21 +32,29 @@ joblib==1.3.2
     # via scikit-learn
 kiwisolver==1.4.5
     # via matplotlib
+littleutils==0.2.4
+    # via outdated
 markupsafe==2.1.5
     # via jinja2
 matplotlib==3.8.3
-    # via seaborn
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   seaborn
 mpmath==1.3.0
     # via sympy
 networkx==3.2.1
     # via
+    #   gnn-recsys (pyproject.toml)
     #   dgl
     #   torch
 numpy==1.26.0
     # via
+    #   gnn-recsys (pyproject.toml)
     #   contourpy
     #   dgl
+    #   gensim
     #   matplotlib
+    #   ogb
     #   pandas
     #   pyarrow
     #   scikit-learn
@@ -79,17 +91,27 @@ nvidia-nvjitlink-cu12==12.4.99
     #   nvidia-cusparse-cu12
 nvidia-nvtx-cu12==12.1.105
     # via torch
+ogb==1.3.6
+    # via gnn-recsys (pyproject.toml)
+outdated==0.2.2
+    # via ogb
 packaging==24.0
     # via matplotlib
 pandas==2.2.1
-    # via seaborn
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   ogb
+    #   seaborn
 pillow==10.2.0
     # via matplotlib
-polars==0.20.31
+polars==1.3.0
+    # via gnn-recsys (pyproject.toml)
 psutil==5.9.8
     # via dgl
 pyarrow==16.1.0
+    # via gnn-recsys (pyproject.toml)
 pydantic==2.6.4
+    # via gnn-recsys (pyproject.toml)
 pydantic-core==2.16.3
     # via pydantic
 pyparsing==3.1.2
@@ -101,28 +123,46 @@ python-dateutil==2.9.0.post0
 pytz==2024.1
     # via pandas
 pyyaml==6.0.1
+    # via gnn-recsys (pyproject.toml)
 requests==2.31.0
     # via
     #   dgl
+    #   outdated
     #   torchdata
 scikit-learn==1.4.1.post1
+    # via
+    #   gnn-recsys (pyproject.toml)
+    #   ogb
 scipy==1.12.0
     # via
     #   dgl
+    #   gensim
     #   scikit-learn
 seaborn==0.13.2
+    # via gnn-recsys (pyproject.toml)
+setuptools==71.1.0
+    # via outdated
 six==1.16.0
-    # via python-dateutil
+    # via
+    #   ogb
+    #   python-dateutil
+smart-open==7.0.4
+    # via gensim
 sympy==1.12
     # via torch
 threadpoolctl==3.3.0
     # via scikit-learn
 torch==2.2.0
-    # via torchdata
+    # via
+    #   -r requirements-cpu.in
+    #   ogb
+    #   torchdata
 torchdata==0.7.1
     # via dgl
 tqdm==4.66.2
-    # via dgl
+    # via
+    #   dgl
+    #   ogb
 triton==2.2.0
     # via torch
 typing-extensions==4.10.0
@@ -134,5 +174,8 @@ tzdata==2024.1
     # via pandas
 urllib3==2.2.1
     # via
+    #   ogb
     #   requests
     #   torchdata
+wrapt==1.16.0
+    # via smart-open
