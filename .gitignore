@@ -1,6 +1,7 @@
 # Project
 data/*
 models/*
+!data/user_study_results.tsv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
