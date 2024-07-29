@@ -36,7 +36,7 @@ req-sync:
 	uv pip sync requirements.txt
 
 req-dev-sync:
-	uv pip sync requirements-cuda.txt
+	uv pip sync requirements-dev.txt
 
 req-sync-cuda:
 	uv pip sync requirements-cuda.txt

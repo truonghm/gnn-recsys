@@ -1,6 +1,8 @@
 import argparse
 import json
+from typing import List, Optional
 
+import pandas as pd
 from src.config import settings
 from src.data.oag_cs.analyze import iter_lines
 from src.data.oag_cs.constants import COMPUTER_SCIENCE_L2_TAGS, COMPUTER_SCIENCE_TAG
@@ -9,21 +11,23 @@ START_YEAR = 2010
 END_YEAR = 2021
 
 
-def extract_papers(raw_path):
-    valid_keys = ["title", "authors", "venue", "year", "indexed_abstract", "fos", "doi", "references"]
+def extract_papers(raw_path, exceptions: Optional[List[str]] = None):
+    valid_keys = ["title", "authors", "venue", "year", "indexed_abstract", "fos", "references"]
     cs_fields = set(COMPUTER_SCIENCE_L2_TAGS)
     for p in iter_lines(raw_path, "paper"):
         if not all(p.get(k) for k in valid_keys):
             continue
         fos = {f["name"] for f in p["fos"]}
         abstract = parse_abstract(p["indexed_abstract"])
+        if not exceptions:
+            exceptions = []
         if (
             COMPUTER_SCIENCE_TAG in fos and not fos.isdisjoint(cs_fields) and START_YEAR <= p["year"] <= END_YEAR
             # and len(p["title"]) <= 200
             # and len(abstract) <= 4000
             # and 1 <= len(p["authors"]) <= 20
             # and 1 <= len(p["references"]) <= 100
-        ):
+        ) or p["id"] in exceptions:
             try:
                 yield {
                     "id": p["id"],
@@ -96,8 +100,14 @@ def extract(args):
                 venue_ids.add(p["venue"])
                 fields.update(p["fos"])
     else:
+        print("Extracting paper relations to get exceptions...")
+        if args.relations_path:
+            exceptions = pd.read_csv(args.relations_path, sep="\t", usercols=["PaperId", "RecommendedPaperId"])
+            exceptions = set(exceptions["PaperId"].values) | set(exceptions["RecommendedPaperId"].values)
+        else:
+            exceptions = None
         with open(output_path / "mag_papers.txt", "w", encoding="utf8") as f:
-            for p in extract_papers(args.raw_path):
+            for p in extract_papers(args.raw_path, exceptions):
                 paper_ids.add(p["id"])
                 author_ids.update(p["authors"])
                 venue_ids.add(p["venue"])
@@ -167,6 +177,7 @@ def extract(args):
 def main():
     parser = argparse.ArgumentParser(description="Extract a subset of the OAG dataset in the field of computer science")
     parser.add_argument("raw_path", help="Directory where the original zip file is located")
+    parser.add_argument("relations_path", default=None, help="Path to file for paper-paper relations (ground truth)")
     args = parser.parse_args()
     extract(args)
 
