@@ -22,12 +22,15 @@ def extract_papers(raw_path, exceptions: Optional[List[str]] = None):
         if not exceptions:
             exceptions = []
         if (
-            COMPUTER_SCIENCE_TAG in fos and not fos.isdisjoint(cs_fields) and START_YEAR <= p["year"] <= END_YEAR
+            COMPUTER_SCIENCE_TAG in fos
+            and not fos.isdisjoint(cs_fields)
+            and p["id"] in exceptions
+            # and START_YEAR <= p["year"] <= END_YEAR
             # and len(p["title"]) <= 200
             # and len(abstract) <= 4000
             # and 1 <= len(p["authors"]) <= 20
             # and 1 <= len(p["references"]) <= 100
-        ) or p["id"] in exceptions:
+        ):
             try:
                 yield {
                     "id": p["id"],
@@ -102,7 +105,7 @@ def extract(args):
     else:
         print("Extracting paper relations to get exceptions...")
         if args.relations_path:
-            exceptions = pd.read_csv(args.relations_path, sep="\t", usercols=["PaperId", "RecommendedPaperId"])
+            exceptions = pd.read_csv(args.relations_path, sep="\t", usecols=["PaperId", "RecommendedPaperId"])
             exceptions = set(exceptions["PaperId"].values) | set(exceptions["RecommendedPaperId"].values)
         else:
             exceptions = None
@@ -116,10 +119,10 @@ def extract(args):
                 f.write("\n")
         print(f"Paper extraction completed, saved to {f.name}")
     print(
-        f"Number of papers {len(paper_ids)},\n" \
-            + f"number of scholars {len(author_ids)},\n" \
-            + f"number of journals {len(venue_ids)},\n" \
-            + f"number of fields {len(fields)}"
+        f"Number of papers {len(paper_ids)},\n"
+        + f"number of scholars {len(author_ids)},\n"
+        + f"number of journals {len(venue_ids)},\n"
+        + f"number of fields {len(fields)}"
     )
 
     print("Extracting scholars...")
