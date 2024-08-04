@@ -1,0 +1,3 @@
+[submodule "ref/GNN-Recommendation"]
+	path = ref/GNN-Recommendation
+	url = git@github.com:truonghm/GNN-Recommendation.git
