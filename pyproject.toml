@@ -1,16 +1,11 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
 name = "gnn-recsys"
 version = "0.0.1"
 readme = "README.md"
-requires-python = ">=3.10, <3.11"
+requires-python = ">=3.10"
 dependencies = [
     "pandas",
     "pyarrow>=14.0.1",
-    "polars >= 1.0.0",
     "numpy",
     "scikit-learn",
     "pydantic",
@@ -21,29 +16,42 @@ dependencies = [
     "seaborn",
     "pyyaml",
     "gensim",
-    "ogb"
+    "ogb",
+    "dgl==2.1.0",
+    "torch==2.2.0",
 ]
 
-[project.optional-dependencies]
-
-dev = [
-  "pre-commit",
-  "ipykernel",
-  "ipywidgets"
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu118", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
+dgl = {url = "https://data.dgl.ai/wheels/cu118/dgl-2.1.0%2Bcu118-cp310-cp310-manylinux1_x86_64.whl"}
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[tool.uv]
+upgrade = false
+dev-dependencies = ["pre-commit", "ipykernel", "ipywidgets"]
 
 [tool.ruff]
-lint.ignore = ["E402","F841"]
+lint.ignore = ["E402", "F841"]
 lint.select = ["E", "F", "I", "W"]
-line-length = 120
 lint.fixable = ["I", "F401"]
+line-length = 120
 include = ["*.py"]
-exclude = [".env", ".venv", "venv", "notebooks"]
+exclude = [".env", ".venv", "venv", "notebooks", "ref"]
 output-format = "full"
-src = ["forecaster"]
+src = ["src"]
 
 [tool.ruff.format]
 docstring-code-format = true
 quote-style = "double"
 skip-magic-trailing-comma = false
 line-ending = "auto"
+
+[tool.ruff.lint.isort]
+known-local-folder = ["src", "scripts"]
+no-lines-before = ["local-folder"]
