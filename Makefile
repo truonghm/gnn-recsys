@@ -26,3 +26,14 @@ clean:
 	rm -rf build
 	rm -rf dist
 	rm -rf catboost_info
+
+typecheck:
+	uvx mypy -p src
+
+lint:
+	uvx ruff check --fix src/
+
+format:
+	uvx ruff format src/
+
+check: typecheck lint format

@@ -55,3 +55,33 @@ line-ending = "auto"
 [tool.ruff.lint.isort]
 known-local-folder = ["src", "scripts"]
 no-lines-before = ["local-folder"]
+
+[tool.mypy]
+disallow_untyped_defs = true
+disallow_any_unimported = false # this is needed to pass for torch and dgl
+check_untyped_defs = true
+show_error_codes = true
+no_implicit_optional = true
+warn_return_any = true
+warn_unused_ignores = true
+disable_error_code = ["dict-item"]
+exclude = ["scripts/.*", "data/.*", "notebooks/.*", "ref/.*"]
+
+
+[[tool.mypy.overrides]]
+module = [
+    "dgl.*",
+    "torch.*",
+    "torch.nn.*",
+    "torch.optim.*",
+    "torch.utils.checkpoint.*",
+    "torch.utils.data.*",
+    "torch.utils.dlpack.*",
+    "torch.utils.tensorboard.*",
+    "torch.utils.tensorboard.summary.*",
+    "torch.utils.tensorboard.writer.*",
+]
+ignore_errors = true
+ignore_missing_imports = true
+follow_imports = "silent"
+disable_error_code = ["no-any-unimported"] 

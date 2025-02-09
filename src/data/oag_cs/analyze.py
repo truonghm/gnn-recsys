@@ -14,11 +14,20 @@ def iter_json(filename):
 
 
 def iter_lines(raw_path, data_type):
-    """Iterate over each line of each txt file in the OAG dataset of a specific data type and parse the JSON into a dictionary.
+    """Iterate over each line of each txt file in the OAG dataset of a
+    specific data type and parse the JSON into a dictionary.
 
-    :param raw_path: str The directory where the raw zip files are located.
-    :param data_type: str The type of data, one of author, paper, venue, affiliation.
-    :return: Iterable[dict]
+    Parameters
+    ----------
+    raw_path : str
+        The directory where the raw zip files are located.
+    data_type : str
+        The type of data, one of author, paper, venue, affiliation.
+
+    Returns
+    -------
+    Iterable[dict]
+        Iterator yielding dictionaries parsed from JSON.
     """
     with tempfile.TemporaryDirectory() as tmp:
         for zip_file in os.listdir(raw_path):

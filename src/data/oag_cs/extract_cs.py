@@ -3,6 +3,7 @@ import json
 from typing import List, Optional
 
 import pandas as pd
+
 from src.config import settings
 from src.data.oag_cs.analyze import iter_lines
 from src.data.oag_cs.constants import COMPUTER_SCIENCE_L2_TAGS, COMPUTER_SCIENCE_TAG
@@ -22,9 +23,7 @@ def extract_papers(raw_path, exceptions: Optional[List[str]] = None):
         if not exceptions:
             exceptions = []
         if (
-            COMPUTER_SCIENCE_TAG in fos
-            and not fos.isdisjoint(cs_fields)
-            and p["id"] in exceptions
+            COMPUTER_SCIENCE_TAG in fos and not fos.isdisjoint(cs_fields) and p["id"] in exceptions
             # and START_YEAR <= p["year"] <= END_YEAR
             # and len(p["title"]) <= 200
             # and len(abstract) <= 4000
