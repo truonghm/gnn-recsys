@@ -1,13 +1,13 @@
+import json
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, Optional
-from datetime import datetime
-import json
 
 import dgl
 import torch
 import torch.optim as optim
-from torch.utils.data import DataLoader
 import yaml
+from torch.utils.data import DataLoader
 
 from src.config import settings
 from src.models.base import BaseRecommender
@@ -18,12 +18,7 @@ class Trainer:
     """Trainer for paper recommendation models."""
 
     def __init__(
-        self,
-        model: BaseRecommender,
-        device: torch.device,
-        model_type: str,
-        run_dir: Optional[Path] = None,
-        **kwargs
+        self, model: BaseRecommender, device: torch.device, model_type: str, run_dir: Optional[Path] = None, **kwargs
     ):
         """Initialize the trainer.
 
@@ -43,7 +38,7 @@ class Trainer:
         self.model = model
         self.device = device
         self.model_type = model_type
-        
+
         # Setup run directory
         if run_dir is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -57,16 +52,14 @@ class Trainer:
             "model_type": model_type,
             "model_config": settings[model_type].dict(),
             "training_config": settings.training.dict(),
-            **kwargs
+            **kwargs,
         }
         with open(run_dir / "config.yaml", "w") as f:
             yaml.dump(config, f)
 
         # Setup training
         self.optimizer = optim.Adam(
-            model.parameters(),
-            lr=settings.training.learning_rate,
-            weight_decay=settings.training.weight_decay
+            model.parameters(), lr=settings.training.learning_rate, weight_decay=settings.training.weight_decay
         )
         self.best_val_metric = float("-inf")
         self.metrics_history = []

@@ -42,17 +42,17 @@ class MicroConv(nn.Module):
             feat_dst = self.fc_dst(self.feat_drop(feat_dst)).view(-1, self.num_heads, self.out_dim)
 
             # Compute attention scores
-            el = (feat_src * self.attn_src[:, :self.out_dim]).sum(dim=-1, keepdim=True)
-            er = (feat_dst * self.attn_src[:, self.out_dim:]).sum(dim=-1, keepdim=True)
-            g.srcdata.update({'ft': feat_src, 'el': el})
-            g.dstdata['er'] = er
-            g.apply_edges(fn.u_add_v('el', 'er', 'e'))
-            e = self.leaky_relu(g.edata.pop('e'))
-            g.edata['a'] = edge_softmax(g, e)
+            el = (feat_src * self.attn_src[:, : self.out_dim]).sum(dim=-1, keepdim=True)
+            er = (feat_dst * self.attn_src[:, self.out_dim :]).sum(dim=-1, keepdim=True)
+            g.srcdata.update({"ft": feat_src, "el": el})
+            g.dstdata["er"] = er
+            g.apply_edges(fn.u_add_v("el", "er", "e"))
+            e = self.leaky_relu(g.edata.pop("e"))
+            g.edata["a"] = edge_softmax(g, e)
 
             # Message passing
-            g.update_all(fn.u_mul_e('ft', 'a', 'm'), fn.sum('m', 'ft'))
-            ret = g.dstdata['ft'].view(-1, self.num_heads * self.out_dim)
+            g.update_all(fn.u_mul_e("ft", "a", "m"), fn.sum("m", "ft"))
+            ret = g.dstdata["ft"].view(-1, self.num_heads * self.out_dim)
             if self.activation:
                 ret = self.activation(ret)
             return ret
@@ -90,10 +90,7 @@ class MacroConv(nn.Module):
             ntype: self.fc_node[ntype](feat).view(-1, self.num_heads, self.out_dim)
             for ntype, feat in node_feats.items()
         }
-        rel_feats = {
-            r: self.fc_rel[r[1]](feat).view(-1, self.num_heads, self.out_dim)
-            for r, feat in rel_feats.items()
-        }
+        rel_feats = {r: self.fc_rel[r[1]](feat).view(-1, self.num_heads, self.out_dim) for r, feat in rel_feats.items()}
 
         # Combine features for each node type
         out_feats = {}
@@ -105,10 +102,7 @@ class MacroConv(nn.Module):
                 out_feats[ntype] = rel_node_feats[0].view(-1, self.num_heads * self.out_dim)
             else:
                 rel_node_feats = torch.stack(rel_node_feats, dim=0)
-                cat_feats = torch.cat(
-                    (node_feat.repeat(rel_node_feats.shape[0], 1, 1, 1), rel_node_feats),
-                    dim=-1
-                )
+                cat_feats = torch.cat((node_feat.repeat(rel_node_feats.shape[0], 1, 1, 1), rel_node_feats), dim=-1)
                 attn_scores = self.leaky_relu((self.attn * cat_feats).sum(dim=-1, keepdim=True))
                 attn_scores = F.softmax(attn_scores, dim=0)
                 out_feat = (attn_scores * rel_node_feats).sum(dim=0)
@@ -134,10 +128,9 @@ class HGConvEncoder(BaseEncoder):
         self.residual = residual
 
         # Input projection
-        self.fc_in = nn.ModuleDict({
-            ntype: nn.Linear(in_dim, num_heads * hidden_dim)
-            for ntype, in_dim in in_dims.items()
-        })
+        self.fc_in = nn.ModuleDict(
+            {ntype: nn.Linear(in_dim, num_heads * hidden_dim) for ntype, in_dim in in_dims.items()}
+        )
 
         # HGConv layers
         self.layers = nn.ModuleList()
@@ -150,33 +143,30 @@ class HGConvEncoder(BaseEncoder):
     def _build_conv_layer(self, in_dim: int, hidden_dim: int, num_heads: int, dropout: float):
         """Build a single HGConv layer."""
         # Create parameters for micro-level convolution
-        micro_fc = {ntype: nn.Linear(in_dim, num_heads * hidden_dim, bias=False) 
-                   for ntype in self.fc_in.keys()}
+        micro_fc = {ntype: nn.Linear(in_dim, num_heads * hidden_dim, bias=False) for ntype in self.fc_in.keys()}
         micro_attn = {
-            ntype: nn.Parameter(torch.FloatTensor(size=(num_heads, 2 * hidden_dim)))
-            for ntype in self.fc_in.keys()
+            ntype: nn.Parameter(torch.FloatTensor(size=(num_heads, 2 * hidden_dim))) for ntype in self.fc_in.keys()
         }
 
         # Create parameters for macro-level convolution
-        macro_fc_node = nn.ModuleDict({
-            ntype: nn.Linear(in_dim, num_heads * hidden_dim, bias=False)
-            for ntype in self.fc_in.keys()
-        })
+        macro_fc_node = nn.ModuleDict(
+            {ntype: nn.Linear(in_dim, num_heads * hidden_dim, bias=False) for ntype in self.fc_in.keys()}
+        )
         macro_fc_rel = nn.ModuleDict()  # Will be populated during forward pass
         macro_attn = nn.Parameter(torch.FloatTensor(size=(num_heads, 2 * hidden_dim)))
 
         return {
-            'micro_fc': micro_fc,
-            'micro_attn': micro_attn,
-            'macro_fc_node': macro_fc_node,
-            'macro_fc_rel': macro_fc_rel,
-            'macro_attn': macro_attn,
-            'dropout': dropout
+            "micro_fc": micro_fc,
+            "micro_attn": micro_attn,
+            "macro_fc_node": macro_fc_node,
+            "macro_fc_rel": macro_fc_rel,
+            "macro_attn": macro_attn,
+            "dropout": dropout,
         }
 
     def reset_parameters(self):
         """Initialize learnable parameters."""
-        gain = nn.init.calculate_gain('relu')
+        gain = nn.init.calculate_gain("relu")
         for fc in self.fc_in.values():
             nn.init.xavier_normal_(fc.weight, gain=gain)
             if fc.bias is not None:
@@ -202,26 +192,22 @@ class HGConvEncoder(BaseEncoder):
                     micro_conv = MicroConv(
                         self.hidden_dim,
                         self.num_heads,
-                        layer['micro_fc'][stype],
-                        layer['micro_fc'][dtype],
-                        layer['micro_attn'][stype],
-                        layer['dropout'],
-                        activation=F.relu
+                        layer["micro_fc"][stype],
+                        layer["micro_fc"][dtype],
+                        layer["micro_attn"][stype],
+                        layer["dropout"],
+                        activation=F.relu,
                     )
-                    rel_feats[(stype, etype, dtype)] = micro_conv(
-                        g[stype, etype, dtype],
-                        h_dict[stype],
-                        h_dict[dtype]
-                    )
+                    rel_feats[(stype, etype, dtype)] = micro_conv(g[stype, etype, dtype], h_dict[stype], h_dict[dtype])
 
             # Macro-level convolution
             macro_conv = MacroConv(
                 self.hidden_dim,
                 self.num_heads,
-                layer['macro_fc_node'],
-                layer['macro_fc_rel'],
-                layer['macro_attn'],
-                layer['dropout']
+                layer["macro_fc_node"],
+                layer["macro_fc_rel"],
+                layer["macro_attn"],
+                layer["dropout"],
             )
             h_dict = macro_conv(h_dict, rel_feats)
 
@@ -271,4 +257,4 @@ class HGConvRecommender(BaseRecommender):
 
         # Compute loss
         loss = self.criterion(anchor_embeds, pos_embeds, neg_embeds)
-        return {"loss": loss} 
+        return {"loss": loss}
